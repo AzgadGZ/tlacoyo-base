@@ -7,9 +7,7 @@ import './axiosConfig';
 
 Vue.config.productionTip = false;
 
-Vue.filter('date', function (value) {
-  return new Date(value).toLocaleDateString();
-})
+Vue.filter('date', value => new Date(value).toLocaleDateString());
 
 new Vue({
   router,

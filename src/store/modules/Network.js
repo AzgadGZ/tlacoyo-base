@@ -1,10 +1,10 @@
 export default {
-    state: {
-        online: true,
+  state: {
+    online: true,
+  },
+  mutations: {
+    setStatus(state, status) {
+      state.online = status;
     },
-    mutations:{
-        setStatus(state, status){
-            state.online = status;
-        },
-    }
-}
+  },
+};

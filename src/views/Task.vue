@@ -37,35 +37,36 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapMutations, mapActions } from "vuex";
+import axios from 'axios';
+import { mapMutations, mapActions } from 'vuex';
+
 export default {
-  props: ["id"],
+  props: ['id'],
   data() {
     return {
-      task: {}
+      task: {},
     };
   },
   methods: {
-    ...mapMutations(["setSnack"]),
-    ...mapActions("Task", ["checkTask", 'deleteTask']),
+    ...mapMutations(['setSnack']),
+    ...mapActions('Task', ['checkTask', 'deleteTask']),
 
     async getTask() {
       try {
         const task = await axios.get(`obtenerTareaPorId?id=${this.id}`);
         this.task = task;
       } catch (error) {
-        this.setSnack("Error al cargar tarea");
-        this.$router.push("/");
+        this.setSnack('Error al cargar tarea');
+        this.$router.push('/');
       }
     },
-    async check(task){
+    async check(task) {
       this.task = await this.checkTask(task);
     },
   },
   mounted() {
     this.getTask();
-  }
+  },
 };
 </script>
 

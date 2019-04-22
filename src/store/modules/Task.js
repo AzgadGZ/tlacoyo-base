@@ -1,5 +1,8 @@
+
+/* eslint-disable */
+
 import axios from 'axios';
-import router from '@/router'
+import router from '@/router';
 
 export default {
   namespaced: true,
@@ -14,15 +17,15 @@ export default {
     addTask(state, task) {
       state.tasks.push(task);
     },
-    updateTask(state, task){
-      const index = state.tasks.find(t => t._id === task._id);
-      if(index == -1) return
+    updateTask(state, task) {
+      const index = state.tasks.findIndex(t => t._id === task._id);
+      if (index === -1) return;
       state.tasks.splice(index, 1, task);
     },
-    delTask(state, id){
-      const index = state.tasks.findIndex( task => task._id === id );
+    delTask(state, id) {
+      const index = state.tasks.findIndex(task => task._id === id);
       state.tasks.splice(index, 1);
-    }
+    },
   },
   actions: {
     async getTasks({ commit }, id) {
@@ -43,7 +46,7 @@ export default {
         return false;
       }
     },
-    async checkTask({commit}, task){
+    async checkTask({ commit }, task) {
       try {
         const tempTask = Object.assign({}, task);
         tempTask.finished = !tempTask.finished;
@@ -55,16 +58,16 @@ export default {
         return false;
       }
     },
-    async deleteTask({commit}, task){
+    async deleteTask({ commit }, task) {
       try {
-        const res = await axios.delete(`borrarTarea`, {
-          data:task
+        const res = await axios.delete('borrarTarea', {
+          data: task,
         });
-        commit('delTask', res._id)
+        commit('delTask', res._id);
         router.push('/');
       } catch (error) {
-        commit('setSnack', 'Error al eliminar tarea', {root:true})
+        commit('setSnack', 'Error al eliminar tarea', { root: true });
       }
-    }
+    },
   },
 };

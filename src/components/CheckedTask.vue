@@ -6,12 +6,13 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
+
 export default {
-  props: ["task"],
+  props: ['task'],
   methods: {
-    ...mapActions("Task", ["checkTask"])
-  }
+    ...mapActions('Task', ['checkTask']),
+  },
 };
 </script>
 

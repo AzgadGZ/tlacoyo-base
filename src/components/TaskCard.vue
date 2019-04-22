@@ -33,12 +33,13 @@
 </template>
 
 <script>
-import CheckedTask from '@/components/CheckedTask';
+import CheckedTask from '@/components/CheckedTask.vue';
+
 export default {
   props: ['task'],
-  components:{
-    CheckedTask
-  }  
+  components: {
+    CheckedTask,
+  },
 };
 </script>
 

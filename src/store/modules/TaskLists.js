@@ -20,14 +20,12 @@ export default {
     removeTaskList(state, listID) {
       const index = state.lists.findIndex(list => list._id === listID);
       state.lists.splice(index, 1);
-      if(index > 0)
-        state.selectedList = state.lists[index - 1]._id;
-      else if(state.lists.length > 0)
-        state.selectedList = state.lists[index]._id;
+      if (index > 0) state.selectedList = state.lists[index - 1]._id;
+      else if (state.lists.length > 0) state.selectedList = state.lists[index]._id;
     },
   },
   actions: {
-    async getTaskLists({ dispatch, commit }) {
+    async getTaskLists({ commit }) {
       try {
         const lists = await axios.get('ObtenerListas');
         commit('setLists', lists);
@@ -39,7 +37,7 @@ export default {
         commit('setSnack', 'Error al cargar listas', { root: true });
       }
     },
-    async newTaskLists({ dispatch, commit }, lista) {
+    async newTaskLists({ commit }, lista) {
       try {
         const list = await axios.post('agregarLista', lista);
         commit('addList', list);
@@ -49,7 +47,7 @@ export default {
         return false;
       }
     },
-    async removeTaskList({ dispatch, commit, state }) {
+    async removeTaskList({ commit, state }) {
       try {
         const response = await axios.delete('borrarLista/', {
           data: {
